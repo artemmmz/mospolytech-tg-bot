@@ -1,1 +1,0 @@
-"""Module with all middlewares."""

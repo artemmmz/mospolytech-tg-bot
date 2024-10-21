@@ -13,12 +13,6 @@ pydantic-settings = "^2.5.2"
 asyncpg = "^0.29.0"
 alembic = "^1.13.3"
 celery = "^5.4.0"
-redis = "^5.1.1"
-
-[tool.black]
-line-length=79
-target-version=['py39']
-include='app'
 
 
 [build-system]

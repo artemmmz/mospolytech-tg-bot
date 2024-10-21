@@ -1,17 +1,8 @@
-"""Module with repository for managing users."""
-
 from abc import ABC
 
-from app.core.repository import SQLAlchemyRepository
 from app.utils.models import User
+from app.utils.repository import SQLAlchemyRepository
 
 
 class UserRepository(SQLAlchemyRepository, ABC):
-    """
-    Repository for managing users.
-
-    Attributes:
-        model: SQLAlchemy model
-    """
-
     model = User
