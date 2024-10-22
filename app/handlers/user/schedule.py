@@ -9,7 +9,7 @@ from aiogram.types import CallbackQuery, Message
 from app.core.states import ScheduleState
 from app.exceptions.invallid_argument import InvalidArgumentError
 from app.exceptions.too_many_arguments import TooManyArgumentsError
-from app.filters.callback_datas import ScheduleDate, ScheduleWeekday
+from app.filters.callback_datas import ScheduleDate, ScheduleWeekday, Schedule
 from app.filters.commands import Commands
 from app.handlers.utils import answer_edit_message
 from app.keyboards.inline.schedule import (get_schedule_date_keyboard,
@@ -121,6 +121,14 @@ async def schedule_group(
     group = message.text.strip()
     weekday = get_weekday()
     return await __schedule_weekday(message, group, weekday, schedule_service)
+
+
+@router.callback_query(Schedule.filter())
+async def callback_schedule(
+        callback_query: CallbackQuery, state: FSMContext
+) -> None:
+    await callback_query.message.edit_reply_markup()
+    await __schedule(callback_query.message, state)
 
 
 @router.callback_query(ScheduleWeekday.filter())
